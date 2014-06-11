@@ -79,8 +79,8 @@ if isempty(recencyOK)         ; recencyOK          = true  ; end%if
     
   until pairingOK ==true | pairSum == 0 | counterCombination >=5000 % entweder ist pairingOK true dann wir das ganze nur ein mal ausgeführt oder eben wenn es öfters durchläuft bis die pairSum gleich 0 ist oder nach 5000 versuchen kein paarfreies paar gefunden wurde.
 
-  if pairingOK == true;  outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; en%dif
-  if pairingOK == false; outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; en%dif
+  if pairingOK == true;  outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; end%if
+  if pairingOK == false; outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; end%if
 
   
   %  alternatives Paarungsverhalten (total lame)
@@ -156,7 +156,5 @@ if isempty(recencyOK)         ; recencyOK          = true  ; end%if
   end%switch
   outputMsg
   nextSeed = randomSeed + 42; % the answer to everyting
-  
-  
   
 end%function
