@@ -28,4 +28,4 @@ function infotainment (windowPtr , text)
   Screen('TextColor' , windowPtr , oldTextColor ); % textcolor wiederherstellen
 
   
-endfunction 
+end%function 

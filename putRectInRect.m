@@ -1,15 +1,15 @@
-function [newSizeRect] = putRectInRect ( catalystRect=[100 100 600 600], oldSizeRect=[10 10 100 60] )
+function [newSizeRect] = putRectInRect ( catalystRect, oldSizeRect)
 %% [newSizeRect] = putRectInRect ( catalystRect , oldSizeRect )
 %
 % Input:
-%   catalystRect =
-%   oldSizeRect  =
+%   catalystRect = 
+%   oldSizeRect  = rect that needs changing
 % Output:
 %   newSizeRect = gibt das vegrößerte/verkleinerte oldSizeRect zentriert im
 % 		catalystRect aus. Das ausgegbene rect kann direkt gezeichnte
 % 		werden, daes die ortslage des catalystRect miteinbezieht.
 % History
-% 2014-05-?? written (MG)
+% 2014-06-10 written (MG)
 % ----------------------------------------------------------------------------
 
 %% kucken wie das verhältniss der rects zueinander ist 
@@ -30,15 +30,15 @@ heigthRatio = heigthCatalystRect / heigthOldRect;
 
 if widthRatio  < heigthRatio; %die breite des rects ist näher an der des catalystRect dran deshalb muss die breite hochskaliert werden
   ratio='breit'
-endif;
+end%if;
 
 if widthRatio  > heigthRatio;% wie oben nur dass eben die höhe näher dran ist
   ratio='hoch'
-endif;
+end%if;
 
 if widthRatio == heigthRatio;
   ratio='gleich'
-endif;
+end%if;
 
 
 %% oldSizeRect verkleinern
@@ -68,7 +68,7 @@ switch ratio
   otherwise
     %well fuck
 
-endswitch
+end%switch
 
 %% reSizeRect in das catalystRecteinmitteln
 
@@ -85,4 +85,4 @@ newSizeRect(4) = catalystRect(2) + leftheigth/2 + reSizeRect(4);
 
 
 
-endfunction
+end%function

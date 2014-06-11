@@ -33,7 +33,7 @@ function [ texArray ] = makeTex ( windowPtr , ImgArray, folderStr  )
     DrawFormattedText( windowPtr , prompt , 'center', 'center');
     Screen(windowPtr, 'flip');
     
-  end
+  end%for
 
-endfunction 
+end%function 
 

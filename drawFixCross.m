@@ -35,6 +35,6 @@ function drawFixCross( windowPtr , color , centerPointX , centerPointY , lineLen
   
   Screen('DrawLine', windowPtr , color , fromH , fromV , toH , toV , penWidth);
 
-end
+end%function
 
 

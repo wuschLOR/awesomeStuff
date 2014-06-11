@@ -15,4 +15,4 @@ function rmThisPath
   savepath;
   fprintf(' aaaaand its gone');
 
-end
+end%function

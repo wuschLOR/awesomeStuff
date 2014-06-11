@@ -29,14 +29,14 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
       % falls eine taste gedrückt ist UND sie eine taste von key1 - key4 ist UND nicht mehr als eine taste gedrückt sind
       if keyIsDown && ( keyCode(key1) || keyCode(key2) || keyCode(key3) || keyCode(key4) || keyCode(key5) || keyCode(key6) || keyCode(key7) ) && (sum(keyCode)==1); % &&
           break;
-      end
+      end%if
       if keyIsDown && keyCode(escapeKey);
           Screen('CloseAll');
           finalMsg = 'what what'
           ListenChar(0);
           exit
-      end
-  end
+      end%if
+  end%while
 
   pressedButtonTime    = seconds;
   pressedButtonCode    = keyCode;
@@ -59,6 +59,6 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
       pressedButtonValue   = 7
     otherwise
       pressedButtonValue   = 9999
-  endswitch
+  end%switch
 
-endfunction
+end%function

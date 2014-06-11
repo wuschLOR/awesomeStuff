@@ -1,17 +1,31 @@
-function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed=[42] , inputColMultiplyer=[1] , pairingOK=[true] , reasonsyOK=[true])
-%%  [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed , inputColMultiplyer , pairingOK , reasonsyOK)
+function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed=[] , inputColMultiplyer=[] , pairingOK=[] , recencyOK=[])
+
+if nargin <4
+  if ~exist('randomSeed'              , 'var') ;  randomSeed              = []; end%if
+  if ~exist('inputColMultiplyer'      , 'var') ;  inputColMultiplyer      = []; end%if
+  if ~exist('pairingOK'               , 'var') ;  pairingOK               = []; end%if
+  if ~exist('recencyOK'               , 'var') ;  recencyOK               = []; end%if
+end%if
+
+
+if isempty(randomSeed)        ; randomSeed         = 42    ; end%if
+if isempty(inputColMultiplyer); inputColMultiplyer = 1     ; end%if
+if isempty(pairingOK)         ; pairingOK          = true  ; end%if
+if isempty(recencyOK)         ; recencyOK          = true  ; end%if
+ 
+%%  [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed , inputColMultiplyer , pairingOK , recencyOK)
 %  Input:
-%    colMatrix     = Matrix with 2 culums
+%   colMatrix     = Matrix with 2 culums
 %  		    1 1
 %  		    2 2
 %  		    3 3
 %  		    4 4
-%    randomSeed = seed um die randoms zu steuern
-%    inputColMultiplyer = multiply the colMatrix with a factor 
-%    pairingOK = true   == just generates the random colMatrix once
+%   randomSeed = seed um die randoms zu steuern
+%   inputColMultiplyer = multiply the colMatrix with a factor
+%   pairingOK = true   == just generates the random colMatrix once
 %                false  == generates the randColMatrix after and after until the
 %                          output has no equal pairs
-%    reasonsyOK  = true   == nothing is done to the colMatrix
+%   recencyOK  = true   == nothing is done to the colMatrix
 %                  false  == keeps sorting the rows until no stimuli follows itself
 %  Output:
 %    randColMatrix = matrix mit zwei spalten die durchrandomisiert wurde
@@ -22,9 +36,10 @@ function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix 
 %    nextSeed = randomSeed + 42 setzt den nächsten seed fest
 %
 %  History
-%  2014-05-16 mg  written
+%  2014-06-11 mg  changed stuff to make it work with matlab
 %  2014-06-05 mg  added features to prevent dubblets and/or prevent the same
 %                 stimuli showing up directly after another
+%  2014-05-16 mg  written
 %  ----------------------------------------------------------------------------
   %diary ( num2str( strftime( '%Y%m%d%H%M%S' ,localtime (time () ) ) ) )
 %    diary ('randcolseewhats happening')
@@ -34,8 +49,11 @@ function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix 
   outputMsg = ' ';
 
 %  randomseed
-  %rng(randomSeed);            % matlab:
-  rand('state' , randomSeed); % octave
+  if isoctave
+      rand('state' , randomSeed); % octave
+    else
+      rng (randomSeed);           % matlab
+  end%if
 
   counterCombination=0; % counter for the outputMsg
   do
@@ -61,8 +79,8 @@ function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix 
     
   until pairingOK ==true | pairSum == 0 | counterCombination >=5000 % entweder ist pairingOK true dann wir das ganze nur ein mal ausgeführt oder eben wenn es öfters durchläuft bis die pairSum gleich 0 ist oder nach 5000 versuchen kein paarfreies paar gefunden wurde.
 
-  if pairingOK == true;  outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; endif
-  if pairingOK == false; outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; endif
+  if pairingOK == true;  outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; en%dif
+  if pairingOK == false; outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; en%dif
 
   
   %  alternatives Paarungsverhalten (total lame)
@@ -81,19 +99,19 @@ function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix 
           randColMatrix(thisRow,leftORright) = newRowData; % inhalt vertauschen
           randColMatrix(newRow ,leftORright) = thisRowData;% ""
           swappCounter = swappCounter+1;
-        endif
-      endfor
+        end%if
+      end%for
 
       pairSum = sum(randColMatrix(:,1) == randColMatrix(:,2));
     until pairSum == 0
   outputMsg = ['Swapping hell was done for ' num2str(swappCounter) ' ! '];
-  endif
+  end%if
   
   
 
   % Analyse ob der selbe Stimulus mehrfach hintereinander angezeigt wird
   counterSorting = 0; % counter for the outputMsg
-  switch reasonsyOK
+  switch recencyOK
     case false
       do
         dublett=0
@@ -114,7 +132,7 @@ function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix 
             randColMatrix(newRow ,:) = thisRowData;
             
             counterSorting = counterSorting +1; % counter for the outputMsg
-          endif
+          end%if
 
           % rechte Spalte
           if randColMatrix(lastRow,2) == randColMatrix(thisRow,2)
@@ -129,16 +147,16 @@ function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix 
             randColMatrix(thisRow,:) = newRowData;
             randColMatrix(newRow ,:) = thisRowData;
             counterSorting = counterSorting +1; % counter for the outputMsg
-          endif
-        endfor
+          end%if
+        end%for
       until dublett ==0
       outputMsg = [outputMsg 'sorting was done ' num2str(counterSorting) ' times ! '];
     case true
       outputMsg = [outputMsg 'sorting was done ' num2str(counterSorting) ' times ! '];
-  endswitch
+  end%switch
   outputMsg
   nextSeed = randomSeed + 42; % the answer to everyting
   
   
   
-endfunction
+end%function

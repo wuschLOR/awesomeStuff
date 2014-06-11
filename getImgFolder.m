@@ -27,6 +27,6 @@ function [fileStruct] = getImgFolder (folderStr, fileType)
 
   fileStruct = dir([realFolderStr '*.' fileType]); % reads all the files
 
-endfunction 
+end%function 
 
 %  --------------------------------------------------------------------------  %

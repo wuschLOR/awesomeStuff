@@ -14,4 +14,4 @@ function addThisPath
   savepath;
   fprintf(' done :) enjoy');
 
-end
+end%function
