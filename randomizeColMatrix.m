@@ -1,6 +1,6 @@
-function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed=[] , inputColMultiplyer=[] , pairingOK=[] , recencyOK=[])
+function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed , inputColMultiplyer , pairingOK, recencyOK)
 
-if nargin <4
+if nargin <5
   if ~exist('randomSeed'              , 'var') ;  randomSeed              = []; end%if
   if ~exist('inputColMultiplyer'      , 'var') ;  inputColMultiplyer      = []; end%if
   if ~exist('pairingOK'               , 'var') ;  pairingOK               = []; end%if
