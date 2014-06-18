@@ -1,17 +1,17 @@
 function [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed , inputColMultiplyer , pairingOK, recencyOK)
 
 if nargin <5
-  if ~exist('randomSeed'              , 'var') ;  randomSeed              = []; end%if
-  if ~exist('inputColMultiplyer'      , 'var') ;  inputColMultiplyer      = []; end%if
-  if ~exist('pairingOK'               , 'var') ;  pairingOK               = []; end%if
-  if ~exist('recencyOK'               , 'var') ;  recencyOK               = []; end%if
-end%if
+  if ~exist('randomSeed'              , 'var') ;  randomSeed              = []; endif
+  if ~exist('inputColMultiplyer'      , 'var') ;  inputColMultiplyer      = []; endif
+  if ~exist('pairingOK'               , 'var') ;  pairingOK               = []; endif
+  if ~exist('recencyOK'               , 'var') ;  recencyOK               = []; endif
+endif
 
 
-if isempty(randomSeed)        ; randomSeed         = 42    ; end%if
-if isempty(inputColMultiplyer); inputColMultiplyer = 1     ; end%if
-if isempty(pairingOK)         ; pairingOK          = true  ; end%if
-if isempty(recencyOK)         ; recencyOK          = true  ; end%if
+if isempty(randomSeed)        ; randomSeed         = 42    ; endif
+if isempty(inputColMultiplyer); inputColMultiplyer = 1     ; endif
+if isempty(pairingOK)         ; pairingOK          = true  ; endif
+if isempty(recencyOK)         ; recencyOK          = true  ; endif
  
 %%  [randColMatrix , nextSeed , outputMsg] = randomizeColMatrix (colMatrix , randomSeed , inputColMultiplyer , pairingOK , recencyOK)
 %  Input:
@@ -53,7 +53,7 @@ if isempty(recencyOK)         ; recencyOK          = true  ; end%if
       rand('state' , randomSeed); % octave
     else
       rng (randomSeed);           % matlab
-  end%if
+  endif
 
   counterCombination=0; % counter for the outputMsg
   do
@@ -79,8 +79,8 @@ if isempty(recencyOK)         ; recencyOK          = true  ; end%if
     
   until pairingOK ==true | pairSum == 0 | counterCombination >=5000 % entweder ist pairingOK true dann wir das ganze nur ein mal ausgeführt oder eben wenn es öfters durchläuft bis die pairSum gleich 0 ist oder nach 5000 versuchen kein paarfreies paar gefunden wurde.
 
-  if pairingOK == true;  outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; end%if
-  if pairingOK == false; outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; end%if
+  if pairingOK == true;  outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; endif
+  if pairingOK == false; outputMsg = ['the ' num2str(counterCombination) ' combination was taken  ! ']; endif
 
   
   %  alternatives Paarungsverhalten (total lame)
@@ -99,13 +99,13 @@ if isempty(recencyOK)         ; recencyOK          = true  ; end%if
           randColMatrix(thisRow,leftORright) = newRowData; % inhalt vertauschen
           randColMatrix(newRow ,leftORright) = thisRowData;% ""
           swappCounter = swappCounter+1;
-        end%if
-      end%for
+        endif
+      endfor
 
       pairSum = sum(randColMatrix(:,1) == randColMatrix(:,2));
     until pairSum == 0
   outputMsg = ['Swapping hell was done for ' num2str(swappCounter) ' ! '];
-  end%if
+  endif
   
   
 
@@ -132,7 +132,7 @@ if isempty(recencyOK)         ; recencyOK          = true  ; end%if
             randColMatrix(newRow ,:) = thisRowData;
             
             counterSorting = counterSorting +1; % counter for the outputMsg
-          end%if
+          endif
 
           % rechte Spalte
           if randColMatrix(lastRow,2) == randColMatrix(thisRow,2)
@@ -147,14 +147,14 @@ if isempty(recencyOK)         ; recencyOK          = true  ; end%if
             randColMatrix(thisRow,:) = newRowData;
             randColMatrix(newRow ,:) = thisRowData;
             counterSorting = counterSorting +1; % counter for the outputMsg
-          end%if
-        end%for
+          endif
+        endfor
       until dublett ==0
       outputMsg = [outputMsg 'sorting was done ' num2str(counterSorting) ' times ! '];
     case true
       outputMsg = [outputMsg 'sorting was done ' num2str(counterSorting) ' times ! '];
-  end%switch
+  endswitch
   outputMsg
   nextSeed = randomSeed + 42; % the answer to everyting
   
-end%function
+endfunction

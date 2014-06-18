@@ -13,76 +13,74 @@ function [newSizeRect] = putRectInRect ( catalystRect, oldSizeRect)
 % ----------------------------------------------------------------------------
 
 %% kucken wie das verhältniss der rects zueinander ist 
-widthCatalystRect = catalystRect(3)-catalystRect(1);
-widthOldRect      = oldSizeRect(3)-oldSizeRect(1);
+  widthCatalystRect = catalystRect(3)-catalystRect(1);
+  widthOldRect      = oldSizeRect(3)-oldSizeRect(1);
 
-widthRatio = widthCatalystRect / widthOldRect; % das heißt wert :
-					% < 1 oldSizeRect muss vverkleinert werden
-					% > 1 oldSizeRect muss gestreckt werden
+  widthRatio = widthCatalystRect / widthOldRect; % das heißt wert :
+                                          % < 1 oldSizeRect muss vverkleinert werden
+                                          % > 1 oldSizeRect muss gestreckt werden
 
-heigthCatalystRect = catalystRect(4)-catalystRect(2);
-heigthOldRect      = oldSizeRect(4)-oldSizeRect(2);
+  heigthCatalystRect = catalystRect(4)-catalystRect(2);
+  heigthOldRect      = oldSizeRect(4)-oldSizeRect(2);
 
-heigthRatio = heigthCatalystRect / heigthOldRect;
+  heigthRatio = heigthCatalystRect / heigthOldRect;
 
-%% schaun ob die höhe länger ist oder die breite
-
-
-if widthRatio  < heigthRatio; %die breite des rects ist näher an der des catalystRect dran deshalb muss die breite hochskaliert werden
-  ratio='breit'
-end%if;
-
-if widthRatio  > heigthRatio;% wie oben nur dass eben die höhe näher dran ist
-  ratio='hoch'
-end%if;
-
-if widthRatio == heigthRatio;
-  ratio='gleich'
-end%if;
+  %% schaun ob die höhe länger ist oder die breite
 
 
-%% oldSizeRect verkleinern
-switch ratio
-  case 'breit'
+  if widthRatio  < heigthRatio; %die breite des rects ist näher an der des catalystRect dran deshalb muss die breite hochskaliert werden
+    ratio='breit';
+  endif;
 
-    reSizeRect(1) = 0;
-    reSizeRect(2) = 0;
-    reSizeRect(3) = widthOldRect  * widthRatio;
-    reSizeRect(4) = heigthOldRect * widthRatio;
+  if widthRatio  > heigthRatio;% wie oben nur dass eben die höhe näher dran ist
+    ratio='hoch';
+  endif;
 
-  case 'hoch'
-
-    reSizeRect(1) = 0;
-    reSizeRect(2) = 0;
-    reSizeRect(3) = widthOldRect  * heigthRatio;
-    reSizeRect(4) = heigthOldRect * heigthRatio;
+  if widthRatio == heigthRatio;
+    ratio='gleich';
+  endif;
 
 
-  case 'gleich' %bei gleich widthRatio verwenden da die Bilder im Normalfall eher zu breit sind
+  %% oldSizeRect verkleinern
+  switch ratio
+    case 'breit'
 
-    reSizeRect(1) = 0;
-    reSizeRect(2) = 0;
-    reSizeRect(3) = widthOldRect  * widthRatio;
-    reSizeRect(4) = heigthOldRect * widthRatio;
-  
-  otherwise
-    %well fuck
+      reSizeRect(1) = 0;
+      reSizeRect(2) = 0;
+      reSizeRect(3) = widthOldRect  * widthRatio;
+      reSizeRect(4) = heigthOldRect * widthRatio;
 
-end%switch
+    case 'hoch'
 
-%% reSizeRect in das catalystRecteinmitteln
-
-
-leftwidth  = widthCatalystRect  - reSizeRect(3);
-leftheigth = heigthCatalystRect - reSizeRect(4);
-
-newSizeRect(1) = catalystRect(1) + leftwidth/2;
-newSizeRect(3) = catalystRect(1) + leftwidth/2 +  reSizeRect(3);
-
-newSizeRect(2) = catalystRect(2) + leftheigth/2;
-newSizeRect(4) = catalystRect(2) + leftheigth/2 + reSizeRect(4);
+      reSizeRect(1) = 0;
+      reSizeRect(2) = 0;
+      reSizeRect(3) = widthOldRect  * heigthRatio;
+      reSizeRect(4) = heigthOldRect * heigthRatio;
 
 
+    case 'gleich' %bei gleich widthRatio verwenden da die Bilder im Normalfall eher zu breit sind
+
+      reSizeRect(1) = 0;
+      reSizeRect(2) = 0;
+      reSizeRect(3) = widthOldRect  * widthRatio;
+      reSizeRect(4) = heigthOldRect * widthRatio;
+
+    otherwise
+      %well fuck
+
+  endswitch
+
+  %% reSizeRect in das catalystRecteinmitteln
 
 
-end%function
+  leftwidth  = widthCatalystRect  - reSizeRect(3);
+  leftheigth = heigthCatalystRect - reSizeRect(4);
+
+  newSizeRect(1) = catalystRect(1) + leftwidth/2;
+  newSizeRect(3) = catalystRect(1) + leftwidth/2 +  reSizeRect(3);
+
+  newSizeRect(2) = catalystRect(2) + leftheigth/2;
+  newSizeRect(4) = catalystRect(2) + leftheigth/2 + reSizeRect(4);
+
+
+endfunction

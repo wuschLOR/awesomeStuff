@@ -21,7 +21,7 @@ if isempty(inputColMultiplyer); inputColMultiplyer = 1     ; endif
   outputMsg = ' ';
 
   %  randomseed
-  if isoctave
+  if isoctave;
       rand('state' , randomSeed); % octave
     else
       rng (randomSeed);           % matlab
@@ -42,7 +42,7 @@ if isempty(inputColMultiplyer); inputColMultiplyer = 1     ; endif
   randCol = indexCol(: , 2:end);
 
   outputMsg = 'done';
-  outputMsg
+  outputMsg;
   nextSeed = randomSeed + 42; % the answer to everyting
 
 
