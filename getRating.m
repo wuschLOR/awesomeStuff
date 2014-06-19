@@ -1,14 +1,19 @@
-function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating()
+function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating( till )
 
-%% [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating()
+%% [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating( till )
 %  
-%
+%  INPUT
+%    till =  default = 60 seconds
+%                 time in seconds
 %  helptext goes in here
 %
 %  History
 %  2014-05-19 mg  written
+%  2014-06-18 mg  
 %  ----------------------------------------------------------------------------
-
+  if nargin < 1
+      till = GetSecs + 60;
+  endif
 
   KbName('UnifyKeyNames');
 
@@ -22,26 +27,42 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
   key6 = KbName('6^'); % for number =6
   key7 = KbName('7&'); % for number =7
 
-
+#   counter=0;
   while 1
+#       counter= counter+1;
       %was macht das Keyboard?
       [keyIsDown, seconds, keyCode] = KbCheck;
       % falls eine taste gedrückt ist UND sie eine taste von key1 - key4 ist UND nicht mehr als eine taste gedrückt sind
       if keyIsDown && ( keyCode(key1) || keyCode(key2) || keyCode(key3) || keyCode(key4) || keyCode(key5) || keyCode(key6) || keyCode(key7) ) && (sum(keyCode)==1); % &&
+          pressedButtonTime    = seconds;
+          pressedButtonCode    = keyCode;
+          pressedButtonStr     = KbName(keyCode);
           break;
-      end%if
+      endif
+      % falls die zeit abgelaufen ist
+      if seconds >= till
+          pressedButtonTime    = seconds;
+          pressedButtonCode    = keyCode;
+          pressedButtonStr     = 'FAIL';
+          break;
+      endif
+      % falls jemand die escape taste gedrückt hat - wahrscheinlich keine gute idee das an zu lassen ;
       if keyIsDown && keyCode(escapeKey);
           Screen('CloseAll');
           finalMsg = 'what what'
           ListenChar(0);
           exit
-      end%if
-  end%while
+      endif
+      
+      WaitSecs(.0001);  % .001 reduziert die abfragen innerhalb von 5 secunden von 16745 auf 3594 aber reduziert auch die Genauigkeit auf eben nur
+                        % .1    ==    51
+                        % .01   ==   465
+                        % .001  ==  3594
+                        % .0005 ==  6179
+                        % .0001 == 12402
+  endwhile
 
-  pressedButtonTime    = seconds;
-  pressedButtonCode    = keyCode;
-  pressedButtonStr     = KbName(keyCode);
-
+#   counter
   switch pressedButtonStr
     case '1!'
       pressedButtonValue   = 1
@@ -59,6 +80,6 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
       pressedButtonValue   = 7
     otherwise
       pressedButtonValue   = 9999
-  end%switch
+  endswitch
 
-end%function
+endfunction
