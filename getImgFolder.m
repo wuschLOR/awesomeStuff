@@ -1,7 +1,7 @@
  function [fileStruct] = getImgFolder (folderStr, fileType)
 
-%% dummy function just reffers to readFilesFromFolder 
+%% dummy function just reffers to getFilesInFolderInfo 
  
-fileStruct = readFilesFromFolder (folderStr, fileType)
+fileStruct = getFilesInFolderInfo (folderStr, fileType)
 
 endfunction
