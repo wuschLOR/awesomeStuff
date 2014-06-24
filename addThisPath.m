@@ -4,11 +4,11 @@ function addThisPath
 %  or just happy functions that work whatever folder octave is in right now.
 %
 %  History
+%  2014-06-24 mg  added linebreaks for readability and the butbox folder
 %  2014-06-07 mg  written
-%  2014-0-24  mg  added linebreaks for readability and the butbox folder
 %  ----------------------------------------------------------------------------
 
-  currentPath = pwd
+  currentPath = pwd;
   fprintf('Now adding the current folder to your octave\n');
   fprintf(['this will be ' currentPath '\n']);
   

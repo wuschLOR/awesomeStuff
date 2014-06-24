@@ -1,4 +1,4 @@
-% BETA
+% BETA do not use it ists baaaaad
 
 function drawTexOnCentralPoint ( windowPtr, texturePointer, centralPoint ,changesize )
 %  drawTexOnCentralPoint ( windowPtr, DateiPfad, posX, posY ,changesize )

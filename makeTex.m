@@ -22,18 +22,18 @@ function [ texArray ] = makeTex ( windowPtr , ImgArray, folderStr  )
   
   for i = 1:m
   
-    [image , map , alphaCannel] = imread( [realFolderStr ImgArray(i,1).name]);
+    [IMG , MAP , ALPHA] = imread( [realFolderStr ImgArray(i,1).name]);
 
-   % image(:,:,4) = alphaCannel(:,:); %http://psychtoolbox.org/FaqImageTransparency
+   % IMG(:,:,4) = ALPHA(:,:); %http://psychtoolbox.org/FaqImageTransparency
 
-    texArray(i,:)=Screen('MakeTexture', windowPtr, image);
+    texArray(i,:)=Screen('MakeTexture', windowPtr, IMG);
 
     statusPercent = i/m * 100;
-    prompt = ['Converting ' realFolderStr ' this is ' num2str(statusPercent) ' % done :)'];
-    DrawFormattedText( windowPtr , prompt , 'center', 'center');
+    MSG = ['Converting ' realFolderStr ' this is ' num2str(statusPercent) ' % done :)'];
+    DrawFormattedText( windowPtr , MSG , 'center', 'center');
     Screen(windowPtr, 'flip');
     
-  end%for
+  endfor
 
-end%function 
+endfunction
 
