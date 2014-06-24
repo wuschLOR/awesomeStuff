@@ -11,7 +11,7 @@ function rmThisPath
   currentPath = pwd
   fprintf('Now removing the current folder to your octave');
   fprintf(['this will be ' currentPath]);
-  rmpath (currentPath);
+  rmpath (genpath(currentPath));
   savepath;
   fprintf(' aaaaand its gone');
 

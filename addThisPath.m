@@ -5,13 +5,18 @@ function addThisPath
 %
 %  History
 %  2014-06-07 mg  written
+%  2014-0-24  mg  added linebreaks for readability and the butbox folder
 %  ----------------------------------------------------------------------------
 
   currentPath = pwd
-  fprintf('Now adding the current folder to your octave');
-  fprintf(['this will be ' currentPath]);
-  addpath (currentPath);
+  fprintf('Now adding the current folder to your octave\n');
+  fprintf(['this will be ' currentPath '\n']);
+  
+#   addpath (genpath(currentPath , 'git')); % for version higher than 3.2
+  addpath( currentPath);
+  addpath([currentPath filesep 'butbox']);
   savepath;
-  fprintf(' done :) enjoy');
+  
+  fprintf(' done :) enjoy!\n');
 
-end%function
+endfunction
