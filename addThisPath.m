@@ -15,6 +15,7 @@ function addThisPath
 #   addpath (genpath(currentPath , 'git')); % for version higher than 3.2
   addpath( currentPath);
   addpath([currentPath filesep 'butbox']);
+  addpath([currentPath filesep 'dummyfunctions']);
   savepath;
   
   fprintf(' done :) enjoy!\n');
