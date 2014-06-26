@@ -11,14 +11,14 @@ function [handle , working] = initCedrusUSBLinux()
 %
 
   
-USB=0           % zählt durch
-working = false % wird wahr wenn die Box gefunden wird
+USB=0          ; % zählt durch
+working = false; % wird wahr wenn die Box gefunden wird
 do
   try
     handle = CedrusResponseBox('Open', ['/dev/ttyUSB' num2str(USB)]); % zählt von /ttyUSB0 bis ttyUSB9 durch und schaut ob da ne buttonbox ist
-    working  = true % wenn eine da ist bricht try nicht ab und USB wird auf 10 gesetzt
+    working  = true; % wenn eine da ist bricht try nicht ab und USB wird auf 10 gesetzt
   catch
-    ++USB     % funktioniert der try nicht wird USB +1
+    ++USB;     % funktioniert der try nicht wird USB +1
   end
 until (USB>= 10 | working== true)
 
