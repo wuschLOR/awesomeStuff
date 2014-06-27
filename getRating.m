@@ -1,15 +1,15 @@
 function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating( till )
 
 %% [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating( till )
-%  
-%  INPUT
-%    till =  default = 60 seconds
-%                 time in seconds
+%
 %  helptext goes in here
 %
+%  INPUT
+%    till =  default = PTB time stamp + 60 seconds
+%
 %  History
+%  2014-06-18 mg  now the rating has a timelimit
 %  2014-05-19 mg  written
-%  2014-06-18 mg  
 %  ----------------------------------------------------------------------------
   if nargin < 1
       till = GetSecs + 60;
