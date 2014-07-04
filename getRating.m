@@ -65,21 +65,21 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
 #   counter
   switch pressedButtonStr
     case '1!'
-      pressedButtonValue   = 1
+      pressedButtonValue   = 1;
     case '2@'
-      pressedButtonValue   = 2
+      pressedButtonValue   = 2;
     case '3#'
-      pressedButtonValue   = 3
+      pressedButtonValue   = 3;
     case '4$'
-      pressedButtonValue   = 4
+      pressedButtonValue   = 4;
     case '5%'
-      pressedButtonValue   = 5
+      pressedButtonValue   = 5;
     case '6^'
-      pressedButtonValue   = 6
+      pressedButtonValue   = 6;
     case '7&'
-      pressedButtonValue   = 7
+      pressedButtonValue   = 7;
     otherwise
-      pressedButtonValue   = 9999
+      pressedButtonValue   = 9999;
   endswitch
 
 endfunction
