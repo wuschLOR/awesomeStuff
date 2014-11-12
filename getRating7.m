@@ -1,6 +1,6 @@
-function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRatingLickert5 ( till )
+function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating7 ( till )
 
-%% [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRatingLickert5 ( till )
+%% [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedButtonCode] = getRating7 ( till )
 %
 %  helptext goes in here
 %
@@ -10,7 +10,7 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
 %  History
 %  2014-06-18 mg  now the rating has a timelimit
 %  2014-05-19 mg  written
-%  2014-11-12 mg  custom Likert5 skala
+%  2014-11-12 mg  custom 7 skala
 %  ----------------------------------------------------------------------------
   if nargin < 1
       till = GetSecs + 60;
@@ -25,6 +25,8 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
   key3 = KbName('3#'); % for number =3
   key4 = KbName('4$'); % for number =4
   key5 = KbName('5%'); % for number =5
+  key6 = KbName('6^'); % for number =6
+  key7 = KbName('7&'); % for number =7
 
 #   counter=0;
   while 1
@@ -32,7 +34,7 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
       %was macht das Keyboard?
       [keyIsDown, seconds, keyCode] = KbCheck;
       % falls eine taste gedrückt ist UND sie eine taste von key1 - key4 ist UND nicht mehr als eine taste gedrückt sind
-      if keyIsDown && ( keyCode(key1) || keyCode(key2) || keyCode(key3) || keyCode(key4) || keyCode(key5) ) && (sum(keyCode)==1); % &&
+      if keyIsDown && ( keyCode(key1) || keyCode(key2) || keyCode(key3) || keyCode(key4) || keyCode(key5) || keyCode(key6) || keyCode(key7) ) && (sum(keyCode)==1); % &&
           pressedButtonTime    = seconds;
           pressedButtonCode    = keyCode;
           pressedButtonStr     = KbName(keyCode);
@@ -73,6 +75,10 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
       pressedButtonValue   = 4;
     case '5%'
       pressedButtonValue   = 5;
+    case '6^'
+      pressedButtonValue   = 6;
+    case '7&'
+      pressedButtonValue   = 7;
     otherwise
       pressedButtonValue   = 9999;
   endswitch
