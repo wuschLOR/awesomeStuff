@@ -17,7 +17,9 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
 
   KbName('UnifyKeyNames');
 
-  escapeKey = KbName('escape');
+  escapeKey1 = KbName('LeftGUI');
+  escapeKey2 = KbName('LeftAlt');
+  escapeKey3 = KbName('DELETE' );
 
   key1 = KbName('1!'); % for number =1
   key2 = KbName('2@'); % for number =2
@@ -47,11 +49,10 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
           break;
       endif
       % falls jemand die escape taste gedrückt hat - wahrscheinlich keine gute idee das an zu lassen ;
-      if keyIsDown && keyCode(escapeKey);
+      if keyIsDown && (keyCode(escapeKey1) && keyCode(escapeKey2) && keyCode(escapeKey3) ) && (sum(keyCode)==3) ;
           Screen('CloseAll');
           finalMsg = 'what what'
           ListenChar(0);
-          exit
       endif
       
       WaitSecs(.0001);  % .001 reduziert die abfragen innerhalb von 5 secunden von 16745 auf 3594 aber reduziert auch die Genauigkeit auf eben nur
