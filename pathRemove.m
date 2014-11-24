@@ -1,10 +1,11 @@
-function rmThisPath
+function pathRemove
 
 
 %%  [] = rmThisPath()
 %  This is going to remove the current path from the octave paths list
 %
 %  History
+%  2014-11-23 mg  rename
 %  2014-06-07 mg  written
 %  ----------------------------------------------------------------------------
 

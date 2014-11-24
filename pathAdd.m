@@ -1,9 +1,10 @@
-function addThisPath
+function pathAdd
 %%  [] = addThisPath()
 %  This is going to add the current path to the octave paths for unlimited power
 %  or just happy functions that work whatever folder octave is in right now.
 %
 %  History
+%  2014-11-23 mg  raname
 %  2014-06-24 mg  added linebreaks for readability and the butbox folder
 %  2014-06-07 mg  written
 %  ----------------------------------------------------------------------------
