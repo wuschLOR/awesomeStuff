@@ -1,15 +1,19 @@
-function [handle , working] = initCedrusUSBLinux()
+function [handle , working] = cedrusInitUSBLinux()
 
-%%  [handle , working] = initCedrusUSBLinux()
+%%  [handle , working] = cedrusInitUSBLinux()
 %  tries to initiate the Cedrus Buttonbox found under '/dev/ttyUSB0'
 %  till '/dev/ttyUSB9'. It returns the DevicePoiner and a true/false value if
 %  it was successful
 %  
-%  handle  ==  device pointer
+%  handle  == device pointer
 %  working == true  :was successful
 %             false :failed to find a device
 %
-
+%  ----------------------------------------------------------------------------
+%  History
+%  2014-11-24 mg  rename
+%  2014-06-27 mg  written
+%  ----------------------------------------------------------------------------
   
 USB=0          ; % zählt durch
 working = false; % wird wahr wenn die Box gefunden wird
@@ -21,5 +25,8 @@ do
     ++USB;     % funktioniert der try nicht wird USB +1
   end
 until (USB>= 10 | working== true)
+
+
+end%function
 
 

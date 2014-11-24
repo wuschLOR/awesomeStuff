@@ -1,5 +1,5 @@
-function [pressedButtonTime , pressedButtonValue , pressedButtonStr ] = getRatingCedrus( handle , till)
-%% [pressedButtonTime , pressedButtonValue , pressedButtonStr  ] = getRatingCedrus( handle , till)
+function [pressedButtonTime , pressedButtonValue , pressedButtonStr ] = cedrusgetRating( handle , till)
+%% [pressedButtonTime , pressedButtonValue , pressedButtonStr  ] = cedrusgetRating( handle , till)
 %
 %  helptext goes in here
 %
@@ -8,6 +8,7 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr ] = getRatin
 %    handle = cedrus box handler 
 %
 %  History
+%  2014-11-24 mg  rename
 %  2014-06-27 mg  written
 %  ----------------------------------------------------------------------------
   if nargin < 2
