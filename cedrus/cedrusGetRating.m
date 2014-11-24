@@ -1,4 +1,4 @@
-function [pressedButtonTime , pressedButtonValue , pressedButtonStr ] = cedrusgetRating( handle , till)
+function [pressedButtonTime , pressedButtonValue , pressedButtonStr, pressedButtonTimeRaw ] = cedrusgetRating( handle , till)
 %% [pressedButtonTime , pressedButtonValue , pressedButtonStr  ] = cedrusgetRating( handle , till)
 %
 %  helptext goes in here
@@ -40,11 +40,13 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr ] = cedrusge
   if seconds<= till
     # taste is gedrückt worden
     pressedButtonTime    = evt.ptbtime;
+#     pressedButtonTimeRaw = evt.rawtime;
     pressedButtonStr     = evt.buttonID;
     pressedButtonValue   = evt.button;
   else
     #keine taste ist gedrückt worden
     pressedButtonTime    = seconds;
+#     pressedButtonTimeRaw =
     pressedButtonStr     = 'FAIL';
     pressedButtonValue   = 9999;
   endif

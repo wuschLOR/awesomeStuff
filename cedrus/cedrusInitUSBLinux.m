@@ -14,6 +14,11 @@ function [handle , working] = cedrusInitUSBLinux()
 %  2014-11-24 mg  rename
 %  2014-06-27 mg  written
 %  ----------------------------------------------------------------------------
+%  TODO
+%  2014-11-23
+%    [ ] add more info output
+%    [ ] is ther a way to calibrate tis thing ?
+%  ----------------------------------------------------------------------------
   
 USB=0          ; % zählt durch
 working = false; % wird wahr wenn die Box gefunden wird
