@@ -8,10 +8,11 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
 %    till =  default = PTB time stamp + 600 seconds
 %
 %  History
+%  2014-11-13 mg  changed keys + new exit keys
 %  2014-06-18 mg  now the rating has a timelimit
 %  2014-05-19 mg  written
-%  2014-11-13 mg  changed keys + new exit keys
 %  ----------------------------------------------------------------------------
+  # check if till is present
   if nargin < 1
       till = GetSecs + 600;
   endif
