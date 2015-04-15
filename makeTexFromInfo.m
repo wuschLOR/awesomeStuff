@@ -10,6 +10,7 @@ function [ infoStruct] =makeTexFromInfo (windowPtr , infoStruct)
 #  If the file is a .png the alpha Channel will be added to be used with 
 #  Screen('BlendFunction') also a PTB function.
 ###############################################################################
+#
 #  History
 #  2015-04-15 mg  added the alpha channel for .png
 #  2014-11-13 mg  changed message
