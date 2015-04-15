@@ -1,5 +1,4 @@
 function timediff = cedrusTest(handle)
-
   till = GetSecs + 60;
   # alte events wegwerfen
   CedrusResponseBox('FlushEvents', handle);
