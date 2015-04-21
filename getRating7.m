@@ -8,6 +8,7 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
 %    till =  default = PTB time stamp + 60 seconds
 %
 %  History
+#  2015-04-21 mg  9999 -> NaN
 %  2014-11-13 mg  changed keys + new exit keys + getRelease
 %  2014-11-12 mg  custom 7 skala
 %  2014-06-18 mg  now the rating has a timelimit
@@ -82,7 +83,7 @@ function [pressedButtonTime , pressedButtonValue , pressedButtonStr , pressedBut
     case '7&'
       pressedButtonValue   = 7;
     otherwise
-      pressedButtonValue   = 9999;
+      pressedButtonValue   = NaN;
   endswitch
   getRelease
 endfunction
