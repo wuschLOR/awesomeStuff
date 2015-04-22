@@ -25,7 +25,7 @@ function [ infoStruct] =makeTexFromInfo (windowPtr , infoStruct)
     
     #check for png
     #http://old.psychtoolbox.org/OldPsychtoolbox/wikka.php?wakka=FaqImageTransparency
-    if findstr( infoStruct(i).name , '.png')
+    if findstr( infoStruct(i).name , '.png') & ~isempty(ALPHA)
       IMG(:,:,4) = ALPHA(:,:);
     endif
 
